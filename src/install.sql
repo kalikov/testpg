@@ -205,7 +205,9 @@ EXCEPTION
   WHEN OTHERS THEN
   BEGIN
     EXECUTE p_statement;
+    RAISE EXCEPTION 'Exception Block Rollback' USING errcode = 'transaction_rollback';
   EXCEPTION
+    WHEN transaction_rollback THEN
     WHEN OTHERS THEN
       get stacked diagnostics l_error_text = message_text, l_error_detail = pg_exception_detail;
       RAISE EXCEPTION '%: Error on executing: % % %', sqlstate, p_statement, l_error_text, l_error_detail USING errcode = sqlstate;
