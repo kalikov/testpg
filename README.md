@@ -1,10 +1,10 @@
 # testpg - Unit testing framework for PostgreSQL
 
 Based on [PGUnit][#pgunit] testing framework to support unit tests as stored procedures without dependency on dblink. Try's to solve test isolation problem using exception block.
-According to PostgreSQL documentation Functions and trigger procedures are always executed within a transaction established by an outer query — they cannot start or commit that transaction, since there would be no context for them to execute in.
+According to PostgreSQL documentation Functions and trigger procedures are always executed within a transaction established by an outer query â€” they cannot start or commit that transaction, since there would be no context for them to execute in.
 However, a block containing an EXCEPTION clause effectively forms a subtransaction that can be rolled back without affecting the outer transaction.
 
-Copy-paste from PGUnit documentation:
+### Copy-paste from PGUnit documentation:
 The testing is based on specific naming convention that allows automatic grouping of tests, setup, tear-downs, pre and post conditions.
 
 Each unit test procedure name should have "test_case_" prefix in order to be identified as an unit test. Here is the comprehensive list of prefixes for all types:
